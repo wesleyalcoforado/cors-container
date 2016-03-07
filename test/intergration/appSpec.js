@@ -10,6 +10,7 @@ describe('GET /http://jacob.uk.com', function(){
             .expect('Access-Control-Allow-Origin', '*')
             .expect('Access-Control-Allow-Headers', 'Content-Type')
             .expect('Access-Control-Allow-Credentials', 'false')
+            .expect('X-Proxied-By', 'cors-container')
             .expect(200, done);
     });
     
@@ -26,6 +27,7 @@ describe('GET /http://jacob.uk.com', function(){
             .expect('Access-Control-Allow-Origin', '*')
             .expect('Access-Control-Allow-Headers', 'Content-Type')
             .expect('Access-Control-Allow-Credentials', 'false')
+            .expect('X-Proxied-By', 'cors-container')
             .expect(404, done);
     });
 });
