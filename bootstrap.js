@@ -8,6 +8,7 @@ module.exports = function(app){
         res.header('Access-Control-Allow-Origin', '*');
         res.header('Access-Control-Allow-Credentials', false);
         res.header('Access-Control-Allow-Headers', 'Content-Type');
+        res.header('X-Proxied-By', 'cors-container');
     }
 
     app.get('/*', (req, res) => {
@@ -15,7 +16,10 @@ module.exports = function(app){
         
         request({
             uri: req.params[0],
-            resolveWithFullResponse: true
+            resolveWithFullResponse: true,
+            headers: {
+                'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36'
+            }
         })
         .then(originResponse => {
             setHeaders(res, originResponse);
