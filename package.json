@@ -1,0 +1,31 @@
+{
+  "name": "cors-proxy",
+  "version": "0.0.1",
+  "description": "A CORS proxy.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node --harmony app.js",
+    "test": "node_modules/mocha/bin/mocha --recursive"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/imjacobclark/cors-proxy.git"
+  },
+  "keywords": [
+    "cors",
+    "proxy"
+  ],
+  "author": "Jacob Clark",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/imjacobclark/cors-proxy/issues"
+  },
+  "homepage": "https://github.com/imjacobclark/cors-proxy#readme",
+  "dependencies": {
+    "compression": "^1.6.1",
+    "express": "^4.13.4",
+    "mocha": "^2.4.5",
+    "request-promise": "^2.0.0",
+    "supertest": "^1.2.0"
+  }
+}
