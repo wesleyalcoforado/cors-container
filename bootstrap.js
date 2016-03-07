@@ -27,8 +27,8 @@ module.exports = function(app){
         })
         .catch(originResponse => {
             setHeaders(res, originResponse);
-            res.status(originResponse.statusCode);
-            return res.send('error');
+            res.status(originResponse.statusCode || 500);
+            return res.send(originResponse.message);
         });
     });
 };
