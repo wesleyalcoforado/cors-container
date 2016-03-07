@@ -19,7 +19,7 @@ if (cluster.isMaster && !module.parent) {
         console.log(`worker ${worker.process.pid} died`);
     });
     
-    console.info("cors-proxy listening on port 3000 with " + numCPUs + " threads.")
+    console.info("cors-container listening on port 3000 with " + numCPUs + " threads.")
 } else {
     if (!module.parent) {
         app.listen(3000);
