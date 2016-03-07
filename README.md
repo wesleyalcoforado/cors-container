@@ -10,11 +10,19 @@ If you intend to use this in production over the open web, ensure the service is
 
 #### Deploying
 
-##### Docker
+##### Docker(hub)
 
 ```bash
 $ docker pull imjacobclark/cors-container
-$ docuer run --restart=always -d -p 3000:3000 --name cors-container imjacobclark/cors-container
+$ docker run --restart=always -d -p 3000:3000 --name cors-container imjacobclark/cors-container
+```
+
+##### Docker(source)
+
+```shell
+$ git pull https://github.com/imjacobclark/cors-container.git && cd cors-container
+$ docker build -t cors-container
+$ docker run --restart=always -d -p 3000:3000 --name cors-container cors-container
 ```
 
 ##### Node
