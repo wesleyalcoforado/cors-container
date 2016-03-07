@@ -23,7 +23,7 @@ module.exports = function(app){
         })
         .catch(originResponse => {
             setHeaders(res, originResponse);
-            res.status(originResponse.statusCode || 200);
+            res.status(originResponse.statusCode);
             return res.send('error');
         });
     });
