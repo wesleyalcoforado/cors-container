@@ -22,7 +22,7 @@ module.exports = function(app){
         console.info(req.protocol + '://' + req.get('host') + origionalUrl);
         
         if(requestedUrl == ''){
-            res.end(index);
+            res.send(index);
             return;
         }
 
