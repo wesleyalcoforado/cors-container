@@ -12,6 +12,16 @@ If you intend to use this in production over the open web, ensure the service is
 
 I suggest implementing proper CORS headers on your resources and using this for development purposes only.
 
+#### Relative URL rewriting 
+
+cors-container can rewrite relative URLs to full URLs within the content you have proxied, for example: If we wish to proxy `http://blog.jacob.uk.com` and cors-container is runinnng on `http://localhost:3000/` our request URL would be `http://localhost:3000/http://blog.jacob.uk.com`.
+
+cors-container will then rewrite any relative URLs, for example `<a href="/my-blog-post">` would be modified to `<a href="http://localhost:3000/http://blog.jacob.uk.com/my-blog-post">` in the proxied response.
+
+This can be useful if you wish to be able to follow links and also pull them through the proxy. This is not enabled by default as this option mutates the origional response body.
+
+Set `rewrite-urls` in the request header to cors-cotainer if you want relative URLs rewriting.
+
 #### Deploying
 
 ##### Docker(hub)
@@ -35,3 +45,12 @@ $ docker run --restart=always -d -p 3000:3000 --name cors-container cors-contain
 $ git pull https://github.com/imjacobclark/cors-container.git && cd cors-container
 $ npm run test && npm start
 ```
+
+#### Thanks to
+
+* [Express](http://expressjs.com/)
+* [request-promise](https://github.com/request/request-promise)
+* [rel-to-abs](https://github.com/auth0/rel-to-abs)
+* [Supertest](https://github.com/visionmedia/supertest)
+* [Mocha](http://mochajs.org/)
+* [Nock](https://github.com/pgte/nock)

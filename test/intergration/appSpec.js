@@ -1,10 +1,11 @@
 'use strict';
 
-var request = require('supertest');
-var app = require('../../app');
-
+const request = require('supertest');
+const nock = require('nock');
+const app = require('../../app');
+                 
 describe('GET /http://jacob.uk.com', function(){
-    it('respond with expected headers', function(done){
+    it('should respond with expected headers', function(done){
         request(app)
             .get('/https://www.jacob.uk.com')
             .expect('Access-Control-Allow-Origin', '*')
@@ -14,14 +15,14 @@ describe('GET /http://jacob.uk.com', function(){
             .expect(200, done);
     });
     
-    it('respect headers set by origin', function(done){
+    it('should respect headers set by origin', function(done){
         request(app)
             .get('/https://www.jacob.uk.com/')
             .expect('X-Powered-By', 'Express')
             .expect(200, done);
     });
     
-    it('respond with expected not found status code', function(done){
+    it('should respond with expected not found status code', function(done){
         request(app)
             .get('/https://www.jacob.uk.com/i-do-not-exsist')
             .expect('Access-Control-Allow-Origin', '*')
@@ -30,4 +31,19 @@ describe('GET /http://jacob.uk.com', function(){
             .expect('X-Proxied-By', 'cors-container')
             .expect(404, done);
     });
+    
+    it('should rewrite relative paths when rewrite-url header is true', function(done){
+        let relativeUrlMockResponse = nock('https://blog.jacob.uk.com')
+            .get('/')
+            .reply(200, '<a href="/a-blog-post">');
+            
+        request(app)
+            .get('/https://blog.jacob.uk.com/')
+            .set('rewrite-urls', 'true')
+            .expect('Access-Control-Allow-Origin', '*')
+            .expect('Access-Control-Allow-Headers', 'Content-Type')
+            .expect('Access-Control-Allow-Credentials', 'false')
+            .expect('X-Proxied-By', 'cors-container')
+            .expect('<a href="https://blog.jacob.uk.com/a-blog-post">', done);
+    })
 });

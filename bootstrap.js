@@ -1,6 +1,7 @@
 'use strict';
 
 const request = require('request-promise');
+const converter = require('rel-to-abs');
 
 module.exports = function(app){
     function setHeaders(res, origin){
@@ -12,10 +13,13 @@ module.exports = function(app){
     }
 
     app.get('/*', (req, res) => {
+        let origionalUrl = req.originalUrl;
+        let requestedUrl = req.params[0];
+        
         console.info(req.protocol + '://' + req.get('host') + req.originalUrl);
         
         request({
-            uri: req.params[0],
+            uri: requestedUrl,
             resolveWithFullResponse: true,
             headers: {
                 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36'
@@ -23,7 +27,14 @@ module.exports = function(app){
         })
         .then(originResponse => {
             setHeaders(res, originResponse);
-            res.send(originResponse.body); 
+
+            if(req.headers['rewrite-urls']){
+                res.send(
+                    converter.convert(originResponse.body, requestedUrl)
+                ); 
+            }else{
+                res.send(originResponse.body);                
+            }
         })
         .catch(originResponse => {
             setHeaders(res, originResponse);
