@@ -15,9 +15,10 @@ module.exports = function(app){
     app.get('/*', (req, res) => {
         let origionalUrl = req.originalUrl;
         let requestedUrl = req.params[0];
+        let corsBaseUrl = req.protocol + '://' + req.get('host');
         
         console.info(req.protocol + '://' + req.get('host') + req.originalUrl);
-        
+
         request({
             uri: requestedUrl,
             resolveWithFullResponse: true,
@@ -30,8 +31,9 @@ module.exports = function(app){
 
             if(req.headers['rewrite-urls']){
                 res.send(
-                    converter.convert(originResponse.body, requestedUrl)
-                ); 
+                    converter
+                        .convert(originResponse.body, requestedUrl)
+                            .replace(requestedUrl, corsBaseUrl + '/' + requestedUrl)); 
             }else{
                 res.send(originResponse.body);                
             }
