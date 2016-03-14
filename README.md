@@ -14,11 +14,15 @@ I suggest implementing proper CORS headers on your resources and using this for 
 
 #### Relative URL rewriting 
 
-cors-container can rewrite relative URLs to full URLs within the content you have proxied, for example: If we wish to proxy `http://blog.jacob.uk.com` and cors-container is runinnng on `http://localhost:3000/` our request URL would be `http://localhost:3000/http://blog.jacob.uk.com`.
+cors-container can rewrite relative URLs to full URLs of the response body you have proxied. 
 
-cors-container will then rewrite any relative URLs, for example `<a href="/my-blog-post">` would be modified to `<a href="http://localhost:3000/http://blog.jacob.uk.com/my-blog-post">` in the proxied response.
+For example if we wish to proxy `http://blog.jacob.uk.com/` and cors-container is runinnng on `http://localhost:3000/` the request URL would be `http://localhost:3000/http://blog.jacob.uk.com/`.
 
-This can be useful if you wish to be able to follow links and also pull them through the proxy. This is not enabled by default as this option mutates the origional response body.
+cors-container will rewrite any relative URLs it finds in the proxies response body. For example `<a href="/my-blog-post">` would be modified to `<a href="http://localhost:3000/http://blog.jacob.uk.com/my-blog-post">` in the proxied response.
+
+This can be useful if you wish to be able to follow links within a response and proxy them through cors-container. 
+
+This is not enabled by default as this option mutates the original response body. 
 
 Set `rewrite-urls` in the request header to cors-cotainer if you want relative URLs rewriting.
 
