@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>cors-container</title>
+    <meta name="description" content="cors-container proxies HTTP(S) requests and adds CORS permissive headers to the response."/>
+</head>
+<body>
+    <head>
+        <h1>cors-container</h1>
+    </head>
+    
+    <main>
+        <p>
+            cors-container proxies HTTP(S) requests and adds CORS permissive headers to the response.
+        </p>
+        
+        <h2>Usage:</h2>
+        
+        <pre>
+            Format: 
+                
+                <i><u>protocol://</u>cors-container/</i><strong>url-to-proxy</strong>
+            
+            Examples:
+            
+                Insecure: <i><u>http://</u>cors-container/</i><strong>http://ngaas.jacob.uk.com</strong>
+                Secure (TLS): <i><u>https://</u>cors-container/</i><strong>https://ngaas.jacob.uk.com</strong>
+            
+            Optional headers:
+            
+                rewrite-urls: true (rewrites all relative URLs in the response to match the absolute cors-container URL)
+        </pre>
+    </main>
+    
+    <footer>
+        <p>cors-container source code is avaiable on <a href="http://github.com/imjacobclark/cors-container">GitHub</a> and can be deployed to your own server/development machine.</p>
+    </footer>
+</body>
+</html>

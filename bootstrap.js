@@ -2,6 +2,8 @@
 
 const request = require('request-promise');
 const converter = require('rel-to-abs');
+const fs = require('fs');
+const index = fs.readFileSync('index.html', 'utf8');
 
 module.exports = function(app){
     function setHeaders(res, origin){
@@ -18,6 +20,11 @@ module.exports = function(app){
         let corsBaseUrl = '//' + req.get('host');
         
         console.info(req.protocol + '://' + req.get('host') + origionalUrl);
+        
+        if(requestedUrl == ''){
+            res.end(index);
+            return;
+        }
 
         request({
             uri: requestedUrl,
