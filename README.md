@@ -18,9 +18,9 @@ cors-container can rewrite relative URLs to full URLs of the response body you h
 
 For example if we wish to proxy `http://blog.jacob.uk.com/` and cors-container is runinnng on `http://localhost:3000/` the request URL would be `http://localhost:3000/http://blog.jacob.uk.com/`.
 
-cors-container will rewrite any relative URLs it finds in the proxies response body. For example `<a href="/my-blog-post">` would be modified to `<a href="http://localhost:3000/http://blog.jacob.uk.com/my-blog-post">` in the proxied response.
+cors-container will rewrite any relative URLs it finds in the proxies response body. For example `<a href="/css/style.css">` would be modified to `<a href="http://localhost:3000/http://blog.jacob.uk.com/css/style.css">` in the proxied response.
 
-This can be useful if you wish to be able to follow links within a response and proxy them through cors-container. 
+This can be useful if you wish to be able to pull additional assets on a page through the proxy such as stylesheets and JavaScript. 
 
 This is not enabled by default as this option mutates the original response body. 
 
