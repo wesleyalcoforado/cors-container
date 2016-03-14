@@ -15,9 +15,9 @@ module.exports = function(app){
     app.get('/*', (req, res) => {
         let origionalUrl = req.originalUrl;
         let requestedUrl = req.params[0];
-        let corsBaseUrl = req.protocol + '://' + req.get('host');
+        let corsBaseUrl = '//' + req.get('host');
         
-        console.info(req.protocol + '://' + req.get('host') + req.originalUrl);
+        console.info(req.protocol + '://' + req.get('host') + origionalUrl);
 
         request({
             uri: requestedUrl,
@@ -40,7 +40,9 @@ module.exports = function(app){
         })
         .catch(originResponse => {
             setHeaders(res, originResponse);
+            
             res.status(originResponse.statusCode || 500);
+            
             return res.send(originResponse.message);
         });
     });
