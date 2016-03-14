@@ -44,6 +44,6 @@ describe('GET /http://jacob.uk.com', function(){
             .expect('Access-Control-Allow-Headers', 'Content-Type')
             .expect('Access-Control-Allow-Credentials', 'false')
             .expect('X-Proxied-By', 'cors-container')
-            .expect(/<a href="http:\/\/127.0.0.1:[0-9]+\/https:\/\/blog.jacob.uk.com\/a-blog-post">/, done);
+            .expect(/<a href="\/\/127.0.0.1:[0-9]+\/https:\/\/blog.jacob.uk.com\/a-blog-post">/, done);
     })
 });
