@@ -2,6 +2,8 @@
 
 A CORS proxy in a container (Docker) for when you need to `Access-Control-Allow-Origin: *`! 
 
+[![Build Status](https://travis-ci.org/imjacobclark/cors-container.svg)](https://travis-ci.org/imjacobclark/cors-container)
+
 #### About
 
 If you need permissive CORS for a front-end project, simply deploy this container and proxy your HTTP requests through it.
