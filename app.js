@@ -22,7 +22,7 @@ if (cluster.isMaster && !module.parent) {
     console.info("cors-container listening on port 3000 with " + numCPUs + " threads.")
 } else {
     if (!module.parent) {
-        app.listen(3000);
+        app.listen(process.env.PORT || 3000);
     }
 }
 
