@@ -11,10 +11,7 @@ ResponseBuilder.prototype.addHeaderByKeyValue = function(key, value) {
 }
 
 ResponseBuilder.prototype.build = function(headers){
-    if(headers){
-        this.response.header(Object.assign(headers, this.headers));
-    }
-    return this;
+    return headers ? this.response.header(Object.assign(headers, this.headers)) : this;
 }
 
 module.exports = ResponseBuilder;

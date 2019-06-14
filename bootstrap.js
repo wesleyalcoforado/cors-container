@@ -6,7 +6,7 @@ const fs = require('fs');
 const index = fs.readFileSync('index.html', 'utf8');
 const ResponseBuilder = require('./app/ResponseBuilder');
 
-module.exports = function(app){
+module.exports = app => {
     app.get('/*', (req, res) => {
         const responseBuilder = new ResponseBuilder(res);
         

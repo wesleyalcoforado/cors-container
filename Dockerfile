@@ -1,2 +1,11 @@
-FROM node:4-onbuild
+FROM node:10-stretch
+
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
+RUN npm install
+COPY . .
+
 EXPOSE 3000
+CMD [ "npm", "start" ]
