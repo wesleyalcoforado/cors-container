@@ -10,11 +10,10 @@ module.exports = function(app){
     app.get('/*', (req, res) => {
         const responseBuilder = new ResponseBuilder(res);
         
-        const origionalUrl = req.originalUrl;
-        const requestedUrl = req.params[0];
+        const requestedUrl = req.url.slice(1);
         const corsBaseUrl = '//' + req.get('host');
         
-        console.info(req.protocol + '://' + req.get('host') + origionalUrl);
+        console.info(req.protocol + '://' + req.get('host') + req.url);
         
         if(requestedUrl == ''){
             res.send(index);
