@@ -4,7 +4,9 @@ A CORS proxy in a container (Docker) for when you need to `Access-Control-Allow-
 
 [![Build Status](https://travis-ci.org/imjacobclark/cors-container.svg)](https://travis-ci.org/imjacobclark/cors-container)
 
-#### About
+You can use CORS Container without running it yourself via Heroku (it's on a free tier dyno, so initial startup time may be slow!) [https://cors-container.herokuapp.com](https://cors-container.herokuapp.com).
+
+## About
 
 If you need permissive CORS for a front-end project, simply deploy this container and proxy your HTTP requests through it.
 
@@ -14,7 +16,7 @@ If you intend to use this in production over the open web, ensure the service is
 
 I suggest implementing proper CORS headers on your resources and using this for development purposes only.
 
-#### Relative URL rewriting 
+## Relative URL rewriting 
 
 cors-container can rewrite relative URLs to full URLs of the response body you have proxied. 
 
@@ -28,16 +30,16 @@ This is not enabled by default as this option mutates the original response body
 
 Set `rewrite-urls` in the request header to cors-cotainer if you want relative URLs rewriting.
 
-#### Deploying
+## Deploying
 
-##### Docker(hub)
+### Docker(hub)
 
 ```bash
 $ docker pull imjacobclark/cors-container
 $ docker run --restart=always -d -p 3000:3000 --name cors-container imjacobclark/cors-container
 ```
 
-##### Docker(source)
+### Docker(source)
 
 ```shell
 $ git pull https://github.com/imjacobclark/cors-container.git && cd cors-container
@@ -45,14 +47,14 @@ $ docker build -t cors-container .
 $ docker run --restart=always -d -p 3000:3000 --name cors-container cors-container
 ```
 
-##### Node
+### Node
 
 ```shell
 $ git pull https://github.com/imjacobclark/cors-container.git && cd cors-container
 $ npm run test && npm start
 ```
 
-#### Thanks to
+## Thanks to
 
 * [Express](http://expressjs.com/)
 * [request-promise](https://github.com/request/request-promise)
