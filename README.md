@@ -3,6 +3,7 @@
 A CORS proxy in a container (Docker) for when you need to `Access-Control-Allow-Origin: *`! 
 
 [![Build Status](https://travis-ci.org/imjacobclark/cors-container.svg)](https://travis-ci.org/imjacobclark/cors-container)
+[![Docker Pulls](https://img.shields.io/docker/pulls/imjacobclark/cors-container.svg)](https://hub.docker.com/r/imjacobclark/cors-container/)
 
 You can use CORS Container without running it yourself via Heroku (it's on a free tier dyno, so initial startup time may be slow!) [https://cors-container.herokuapp.com](https://cors-container.herokuapp.com).
 
