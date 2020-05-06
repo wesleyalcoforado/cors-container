@@ -1,6 +1,7 @@
 'use strict';
 
 const express = require('express');
+const cors = require('cors');
 const compression = require('compression');
 const cluster = require('cluster');
 const app = express();
@@ -33,6 +34,8 @@ if (isMasterWorker) {
         listen();
     }
 }
+
+app.options('*', cors())
 
 require(__dirname + '/bootstrap')(app);
 
