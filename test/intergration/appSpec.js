@@ -3,9 +3,9 @@
 const request = require('supertest');
 const nock = require('nock');
 const app = require('../../app');
-                 
-describe('GET /http://jacobclark.xyz', function(){
-    it('should respond with expected headers', function(done){
+
+describe('GET /http://jacobclark.xyz', function () {
+    it('should respond with expected headers', function (done) {
         request(app)
             .get('/https://www.jacobclark.xyz')
             .expect('Access-Control-Allow-Origin', '*')
@@ -14,25 +14,25 @@ describe('GET /http://jacobclark.xyz', function(){
             .expect('X-Proxied-By', 'cors-container')
             .expect(200, done);
     });
-    
-    it('should respect headers set by origin', function(done){
+
+    it('should respect headers set by origin', function (done) {
         request(app)
             .get('/https://www.jacobclark.xyz/')
             .expect('content-type', 'text/html; charset=utf-8')
             .expect(200, done);
     });
-    
-    it('should respond with expected not found status code', function(done){
+
+    it('should respond with expected not found status code', function (done) {
         request(app)
             .get('/https://www.jacobclark.xyz/i-do-not-exist')
             .expect(404, done);
     });
-    
-    it('should rewrite relative paths when rewrite-url header is true', function(done){
+
+    it('should rewrite relative paths when rewrite-url header is true', function (done) {
         let relativeUrlMockResponse = nock('https://blog.jacobclark.xyz')
             .get('/')
             .reply(200, '<a href="/a-blog-post">');
-            
+
         request(app)
             .get('/https://blog.jacobclark.xyz/')
             .set('rewrite-urls', 'true')
